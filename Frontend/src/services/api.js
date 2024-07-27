@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:4222";
+const BASE_URL = "https://labreport.onrender.com";
 
 export const endpoints = {
   FORM: BASE_URL + "/api/v1/register",
