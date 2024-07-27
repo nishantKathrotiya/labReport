@@ -1,0 +1,1 @@
+export const labNo = [104,105,108,109,110];
