@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import useOnClickOutside from "../../customHooks/useOnClickOutside";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-const OpenModal = ({ setOpenModal, problemData, setProblemData }) => {
+const OpenModal = ({setOpenModal, problemData, setProblemData }) => {
     const ref = useRef(null);
     useOnClickOutside(ref, () => { setOpenModal(false); setProblemData(null) });
 
@@ -16,7 +16,7 @@ const OpenModal = ({ setOpenModal, problemData, setProblemData }) => {
                     </div>
 
                     <div className='probleTextSection'>
-                        <p>{data}</p>
+                        <p>{problemData}</p>
                     </div>
                 </div>
             </div>

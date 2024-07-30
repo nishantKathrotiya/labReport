@@ -176,11 +176,11 @@ textarea {
        width: 100vw;
     }
     .formContainer {
-        width: 88vw;
+        width: 95vw !important;
         height: auto;
     }
     .formSection {
-        width: 89%;
+        width: 99% !important;
     }
     .formFieldContainerTextArea, .formFieldContainer {
         width: 89%;
