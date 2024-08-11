@@ -237,13 +237,13 @@ const Datatable = ({ data }) => {
             </div>
             <div className='dataTableOverflow'>
                 <div className='columnTitle'>
-                    <span className='titleLabel'>Lab no <Filter filterData={filterData} id="labno" /></span>
-                    <span className='titleLabel' >ID <Filter filterData={filterData} id="id" /></span>
-                    <span className='titleLabel' >Name <Filter filterData={filterData} id="name" /></span>
-                    <span className='titleLabel' >Date <Filter filterData={filterData} id="date" /></span>
-                    <span className='titleLabel' >From Time <Filter filterData={filterData} id="fromTime" /></span>
-                    <span className='titleLabel' >To Time <Filter filterData={filterData} id="toTime" /></span>
-                    <span className='titleLabel'>Problem</span>
+                    <span className='titlelable'>Lab no <Filter filterData={filterData} id="labno" /></span>
+                    <span className='titlelable' >ID <Filter filterData={filterData} id="id" /></span>
+                    <span className='titlelable' >Name <Filter filterData={filterData} id="name" /></span>
+                    <span className='titlelable' >Date <Filter filterData={filterData} id="date" /></span>
+                    <span className='titlelable' >From Time <Filter filterData={filterData} id="fromTime" /></span>
+                    <span className='titlelable' >To Time <Filter filterData={filterData} id="toTime" /></span>
+                    <span className='titlelable'>Problem</span>
                 </div>
                 {
                     filteredData.length == 0 ? (<div className='loadingCenter'><h1>No Data Found</h1></div>) : (

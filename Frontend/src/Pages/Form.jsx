@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { labNo } from "../Utils/Data";
+import { labNo, problemList, timeSlot } from "../Utils/Data";
 import { toast } from 'react-toastify';
 import { regitserForm } from '../services/operation/form';
 import "./Form.css";
@@ -8,22 +8,32 @@ const Form = () => {
   const [formData, setFormData] = useState({
     labno: 104,
     date: '',
-    fromTime: '',
-    toTime: '',
+    fromTime:'9:10',
+    toTime:'11:10',
     personID: '',
     personName: '',
-    problem: ''
+    problem: '',
+    problemName:'Everything Fine'
   });
   
   const [loading , setLoading] = useState(false);
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    if(name=="time"){
+      setFormData({
+        ...formData,
+        fromTime:value.split("-")[0].trim(),
+        toTime:value.split("-")[1].trim()
+      });
+    }else{
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
+    
+    console.log(formData)
   };
 
   const validate = () => {
@@ -48,28 +58,14 @@ const Form = () => {
       toast.error('To time is required');
       return false;
     }
-    if (formData.fromTime && formData.toTime) {
-      const fromTime = new Date(`1970-01-01T${formData.fromTime}:00`);
-      const toTime = new Date(`1970-01-01T${formData.toTime}:00`);
-      if (fromTime >= toTime) {
-        toast.error('From time must be before To time');
-        return false;
-      }
-      const differenceInMinutes = (toTime - fromTime) / (1000 * 60);
-      if (differenceInMinutes < 30) {
-        toast.error('There must be at least a 30-minute difference between From and To times');
-        return false;
-      }
-    }
     if (!formData.personID) {
       toast.error('Faculty/Student ID is required');
       return false;
     }
-    if (!formData.personName) {
+    if ((!formData.personName)|| (formData.personName.trim() == "")) {
       toast.error('Faculty/Student Name is required');
       return false;
     }
-  
     return true;
   };
   
@@ -89,9 +85,7 @@ const Form = () => {
        {
         loading ? (<h1>Loading...</h1>) : (
           <form className='fullWidth' onSubmit={handleSubmit}>
-
           <div className='formItSelf'>
-
             <div className='formSection'>
               <div className="formFieldContainer">
                 <label htmlFor="labno">Lab No.* :</label>
@@ -106,23 +100,23 @@ const Form = () => {
                   }
                 </select>
               </div>
-
               <div className="formFieldContainer">
                 <label htmlFor="date">Date* :</label>
                 <br />
                 <input type="date" name="date" id="date" value={formData.date} onChange={handleChange} />
               </div>
-
               <div className="formFieldContainer">
-                <label htmlFor="fromTime">From* :</label>
+                <label htmlFor="time">Time Slot:</label>
                 <br />
-                <input type="time" name="fromTime" id="fromTime" value={formData.fromTime} onChange={handleChange} />
-              </div>
-
-              <div className="formFieldContainer">
-                <label htmlFor="toTime">To* :</label>
-                <br />
-                <input type="time" name="toTime" id="toTime" value={formData.toTime} onChange={handleChange} />
+                <select
+                  name="time"
+                  value={formData.time}
+                  onChange={handleChange}
+                >
+                  {
+                    timeSlot.map((no) => <option key={no} value={no}>{no}</option>)
+                  }
+                </select>
               </div>
             </div>
 
@@ -139,13 +133,30 @@ const Form = () => {
                 <input type="text" name="personName" id="personName" value={formData.personName} onChange={handleChange} />
               </div>
 
-              <div className="formFieldContainerTextArea">
+              <div className="formFieldContainer">
+                <label htmlFor="problemName">Select Problem:</label>
+                <br />
+                <select
+                  name="problemName"
+                  value={formData.time}
+                  onChange={handleChange}
+                >
+                  {
+                    problemList.map((no,index) => <option key={index} value={no}>{no}</option>)
+                  }
+                </select>
+              </div>
+
+              {/* TextArea is here  */}
+            </div>
+          </div>
+
+          <div className="formFieldContainerTextArea">
                 <label htmlFor="problem">If Any Problem Found* :</label>
                 <br />
                 <textarea id="problem" name="problem" value={formData.problem} onChange={handleChange} />
-              </div>
-            </div>
           </div>
+
 
           <div className='subBtnContainer'>
             <button type="submit">Submit</button>

@@ -27,10 +27,14 @@ const formSchema = new Schema({
     type: String,
     required: true,
   },
-  problem: {
+  problemName: {
     type: String,
     required: false,
   },
+  problem:{
+    type: String,
+    required: false,
+  }
 }, {
   timestamps: true, 
 });

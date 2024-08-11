@@ -14,7 +14,9 @@ const OpenModal = ({setOpenModal, problemData, setProblemData }) => {
                         <p>Problem</p>
                         <IoIosCloseCircleOutline className='iconlarge' onClick={() => { setOpenModal(false); setProblemData(null) }} />
                     </div>
-
+                        <div className='problemName'>
+                            <h3>{problemData.problemName}</h3>
+                        </div>
                     <div className='probleTextSection'>
                         <p>{problemData}</p>
                     </div>

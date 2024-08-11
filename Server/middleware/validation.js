@@ -26,22 +26,6 @@ exports.isValidData = async (req, res, next) => {
       throw new ApiError(500, "To time is required");
       return;
     }
-    if (formData.fromTime && formData.toTime) {
-      const fromTime = new Date(`1970-01-01T${formData.fromTime}:00`);
-      const toTime = new Date(`1970-01-01T${formData.toTime}:00`);
-      if (fromTime >= toTime) {
-        throw new ApiError(500, "From time must be before To time");
-        return;
-      }
-      const differenceInMinutes = (toTime - fromTime) / (1000 * 60);
-      if (differenceInMinutes < 30) {
-        throw new ApiError(
-          500,
-          "There must be at least a 30-minute difference between From and To times"
-        );
-        return;
-      }
-    }
     if (!formData.personID) {
       throw new ApiError(500, "Faculty/Student ID is required");
       return;
@@ -54,8 +38,8 @@ exports.isValidData = async (req, res, next) => {
     next();
   } catch (error) {
     res.json({
-      ...e,
-      message: e.message,
+      ...error,
+      message: error.message,
     });
   }
 };

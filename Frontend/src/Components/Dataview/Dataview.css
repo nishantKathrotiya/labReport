@@ -11,7 +11,12 @@
 }
 .titlelable{
     min-width: 90px;
+    width: 12%;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .iconSmall{

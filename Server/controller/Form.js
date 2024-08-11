@@ -5,15 +5,20 @@ const XLSX = require('xlsx');
 const registerForm = async (req, res) => {
   try {
     const {formData} = req.body;
+
+    if(formData.problemName == "Everything Fine"){
+      formData.problem = null;
+    }
     
     await formSchema.create({
         labno:formData.labno,
         date:formData.date,
         fromTime:formData.fromTime,
         toTime:formData.toTime,
-        personID:formData.personID,
-        personName:formData.personName,
-        problem:(formData.problem=="") ? (null) : (formData.problem)
+        personID:formData.personID.trim(),
+        personName:formData.personName.trim(),
+        problemName:formData.problemName.trim(),
+        problem:formData.problem
     });
 
     return res.json({
@@ -47,6 +52,7 @@ const createExcelSheet = async (req, res) => {
         toTime: form.toTime,
         personID: form.personID,
         personName: form.personName,
+        problemName: form.problemName,
         problem: form.problem,
         createdAt: form.createdAt.toISOString(),
         updatedAt: form.updatedAt.toISOString()
