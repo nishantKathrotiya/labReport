@@ -10,7 +10,7 @@ const Dataview = ({entry , setOpenModal , setProblemData}) => {
                     <span className='titlelable'>{entry.date.split('T')[0]}</span>
                     <span className='titlelable'>{entry.fromTime}</span>
                     <span className='titlelable'>{entry.toTime}</span>
-                    <span className='titlelable'>{entry.problem==null ? (<>No</>):(<IoIosInformationCircleOutline className='iconSmall' onClick={()=>{setOpenModal(true); setProblemData(entry.problem)}} />)}</span>
+                    <span className='titlelable'>{entry.problem==null ? (<>No</>):(<IoIosInformationCircleOutline className='iconSmall' onClick={()=>{setOpenModal(true); setProblemData({problemName:entry.problemName, data:entry.problem})}} />)}</span>
                 </div>
   )
 }

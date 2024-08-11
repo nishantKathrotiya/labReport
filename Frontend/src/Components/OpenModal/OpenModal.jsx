@@ -18,7 +18,7 @@ const OpenModal = ({setOpenModal, problemData, setProblemData }) => {
                             <h3>{problemData.problemName}</h3>
                         </div>
                     <div className='probleTextSection'>
-                        <p>{problemData}</p>
+                        <p>{problemData.problemData}</p>
                     </div>
                 </div>
             </div>
