@@ -144,6 +144,21 @@ const Datatable = ({ data }) => {
             callback: () => setLabnoQuery(110)
         },
         {
+            id: "labno",
+            title: 114,
+            callback: () => setLabnoQuery(114)
+        },
+        {
+            id: "labno",
+            title: 116,
+            callback: () => setLabnoQuery(116)
+        },
+        {
+            id: "labno",
+            title: 118,
+            callback: () => setLabnoQuery(118)
+        },
+        {
             id: "id",
             title: "Ascending",
             callback: () => requestSort('personID')
