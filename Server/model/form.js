@@ -23,6 +23,14 @@ const formSchema = new Schema({
     type: String,
     required: true,
   },
+  numberOfStudent: {
+    type: Number,
+    required: true,
+  },
+  purpose: {
+    type: String,
+    required: true,
+  },
   personName: {
     type: String,
     required: true,

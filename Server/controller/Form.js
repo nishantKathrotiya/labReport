@@ -18,7 +18,9 @@ const registerForm = async (req, res) => {
         personID:formData.personID.trim(),
         personName:formData.personName.trim(),
         problemName:formData.problemName.trim(),
-        problem:formData.problem
+        problem:formData.problem,
+        purpose:formData.purpose,
+        numberOfStudent:formData.numberOfStudent,
     });
 
     return res.json({
@@ -50,6 +52,8 @@ const createExcelSheet = async (req, res) => {
         date: form.date.toISOString().split('T')[0],
         fromTime: form.fromTime,
         toTime: form.toTime,
+        numberOfStudent:form.numberOfStudent,
+        purpose:form.purpose,
         personID: form.personID,
         personName: form.personName,
         problemName: form.problemName,

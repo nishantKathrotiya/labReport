@@ -10,17 +10,22 @@
 
 }
 .titlelable{
-    min-width: 90px;
+    min-width: 130px;
     width: 12%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
 }
 
 .iconSmall{
     width: 25px;
     height: 25px;
     cursor: pointer;
+}
+
+@media (max-width:760px) {
+    .titlelable{
+        min-width: 90px;
+    }
 }

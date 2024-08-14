@@ -36,6 +36,7 @@
     border: 1px solid #dadada;
     border-radius: 20px;
     box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.08);
+    max-width: 1800px;
 }
 
 .formItSelf {
@@ -56,14 +57,14 @@
 
 .formFieldContainer {
     width: 70%;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 
 .formFieldContainerTextArea {
     height: 30%;
     width: 70%;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 
@@ -114,7 +115,7 @@ textarea {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .subBtnContainer button{
@@ -128,6 +129,56 @@ textarea {
     border-radius: 5px;
     background-color: #132f61;
     border: none !important;
+}
+
+
+.absConatiner {
+    z-index: 10;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 15px;
+    display: flex;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(1px);
+    justify-content: center;
+    align-items: center;
+}
+
+.actualField {
+    height: 250px;
+    height: fit-content;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid rgb(131, 131, 131);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.otherBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.otherBtn button{
+    width: 90%;
+    color: #fff;
+    font-size: 1rem;
+    margin: 20px 0;
+    padding: 10px 0;
+    font-weight: 500;
+    border-radius: 5px;
+    background-color: #132f61;
+    border: none !important;
+}
+
+#testFileContainer{
+    width: 95% !important;
 }
 
 
@@ -165,14 +216,25 @@ textarea {
         height: 100px;
         padding: 0;
         margin-bottom: 30px;
-        padding-left: 15px !important
+        /* padding-left: 15px !important; */
     }
 
     textarea {
-        width: 90% !important;;
+        width: 95% !important;;
     }
     input[type="text"] {
         width: 95%;
+    }
+
+    .formPage .absConatiner {
+        top: 0;
+        left: 0;
+        width: 100vw !important;
+        height: 100% !important;
+    }
+    
+    .actualField {
+        width: 250px;
     }
     
 }
@@ -192,4 +254,6 @@ textarea {
     .formFieldContainerTextArea, .formFieldContainer {
         width: 89%;
     }
+    
 }
+

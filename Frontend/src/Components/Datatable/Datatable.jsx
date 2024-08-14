@@ -13,8 +13,8 @@ const Datatable = ({ data }) => {
     const [sortConfig, setSortConfig] = useState(null);
     const [filteredData, setFilteredData] = useState(data);
 
-    const [openModal , setOpenModal] = useState(false);
-    const [problemData , setProblemData] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
+    const [problemData, setProblemData] = useState(null);
 
 
 
@@ -241,23 +241,24 @@ const Datatable = ({ data }) => {
                     <span className='titlelable' >ID <Filter filterData={filterData} id="id" /></span>
                     <span className='titlelable' >Name <Filter filterData={filterData} id="name" /></span>
                     <span className='titlelable' >Date <Filter filterData={filterData} id="date" /></span>
-                    <span className='titlelable' >From Time <Filter filterData={filterData} id="fromTime" /></span>
-                    <span className='titlelable' >To Time <Filter filterData={filterData} id="toTime" /></span>
+                    <span className='titlelable' >Time</span>
+                    <span className='titlelable' >No. of Student</span>
+                    <span className='titlelable' >Purpose</span>
                     <span className='titlelable'>Problem</span>
                 </div>
                 {
                     filteredData.length == 0 ? (<div className='loadingCenter'><h1>No Data Found</h1></div>) : (
                         <>
                             {filteredData.map((entry, i) => (
-                                <Dataview key={i} entry={entry} setOpenModal={setOpenModal}  setProblemData={setProblemData} />
+                                <Dataview key={i} entry={entry} setOpenModal={setOpenModal} setProblemData={setProblemData} />
                             ))}
                         </>
                     )
                 }
             </div>
-                {
-                    openModal && <OpenModal setOpenModal={setOpenModal} problemData={problemData} setProblemData={setProblemData} />
-                }
+            {
+                openModal && <OpenModal setOpenModal={setOpenModal} problemData={problemData} setProblemData={setProblemData} />
+            }
         </div>
     );
 };
