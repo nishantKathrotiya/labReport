@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { labNo, problemList, purposeOfuse, timeSlot } from "../Utils/Data";
+import { labNo, problemList, purposeOfuse, timeSlot,facultyNames } from "../Utils/Data";
 import { toast } from 'react-toastify';
 import { regitserForm } from '../services/operation/form';
 import "./Form.css";
@@ -25,6 +25,8 @@ const Form = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    
+
     if (name === "time") {
       setFormData({
         ...formData,
@@ -45,6 +47,13 @@ const Form = () => {
       setFormData({
         ...formData,
         [name]: value
+      });
+    }
+    if(name=="personID"&&facultyNames.hasOwnProperty(value)){
+      setFormData({
+        ...formData,
+        personName: facultyNames[value],
+        [name]:value
       });
     }
 
