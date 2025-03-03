@@ -1,9 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { labNo, problemList, purposeOfuse, timeSlot,facultyList } from "../Utils/Data";
+import React, { useState } from 'react';
+import { labNo, problemList, purposeOfuse, timeSlot } from "../Utils/Data"; 
 import { toast } from 'react-toastify';
 import { regitserForm } from '../services/operation/form';
 import "./Form.css";
 import Purpose from '../Components/Purpose/Purpose';
+
+const facultyList = [
+  { id: "375", name: "Amit Nayak" },
+  { id: "473", name: "Hardik Jayswal" },
+  { id: "8209", name: "Rajesh Patel" },
+  { id: "6039", name: "Radhika Patel" },
+  { id: "6060", name: "Akash Patel" },
+  { id: "6045", name: "Sachin Patel" },
+  { id: "6056", name: "Ritika Jani" },
+  { id: "6076", name: "Shital Sharma" },
+  { id: "6082", name: "Ashish Kataria" },
+  { id: "6089", name: "Hitesh Makwana" },
+  { id: "6094", name: "Pooja Chaudhry" },
+  { id: "6095", name: "Dipika Damodar" },
+  { id: "6066", name: "Chintak Raval" }
+];
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -17,26 +33,22 @@ const Form = () => {
     problem: '',
     purpose: "Academic Work", 
     problemName: 'Everything Fine',
-    selectedUser: 'Student'  // Default to Student
+    userType: 'Student'  // Default to Student
   });
 
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // Function to handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Handle time input change
     if (name === "time") {
       setFormData({
         ...formData,
         fromTime: value.split("-")[0].trim(),
         toTime: value.split("-")[1].trim()
       });
-    } 
-    // Handle purpose change
-    else if (name === "purpose") {
+    } else if (name === "purpose") {
       if (value === "other") {
         setShowModal(true);
       } else {
@@ -46,32 +58,14 @@ const Form = () => {
         });
         setShowModal(false);
       }
-    } 
-    // Handle selection change for user type (Faculty/Student)
-    else if (name === "selectedUser") {
-      if (value === 'Student') {
-        // Clear the fields when switching back to Student
-        setFormData({
-          ...formData,
-          selectedUser: value,
-          personID: '',
-          personName: ''
-        });
-      } else {
-        // Find the selected faculty
-        const selectedFaculty = facultyList.find(faculty => faculty.id === value);
-        if (selectedFaculty) {
-          setFormData({
-            ...formData,
-            selectedUser: value,
-            personID: selectedFaculty.id,
-            personName: selectedFaculty.name
-          });
-        }
-      }
-    } 
-    // Handle regular input fields
-    else {
+    } else if (name === "userType") {
+      setFormData({
+        ...formData,
+        [name]: value,
+        personID: '',
+        personName: ''
+      });
+    } else {
       setFormData({
         ...formData,
         [name]: value
@@ -79,16 +73,26 @@ const Form = () => {
     }
   };
 
-  // Function to handle form submission
+  const handleFacultySelect = (facultyID) => {
+    const selectedFaculty = facultyList.find(faculty => faculty.id === facultyID);
+    if (selectedFaculty) {
+      setFormData({
+        ...formData,
+        personID: selectedFaculty.id,
+        personName: selectedFaculty.name
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) {
+      console.log(formData);
       return;
     }
     regitserForm(formData, setFormData, setLoading);
   };
 
-  // Validation function
   const validate = () => {
     const today = new Date().toISOString().split('T')[0];
 
@@ -146,7 +150,7 @@ const Form = () => {
                 <div className="formFieldContainer">
                   <label htmlFor="time">Time Slot:</label>
                   <br />
-                  <select name="time" onChange={handleChange}>
+                  <select name="time" value={formData.time} onChange={handleChange}>
                     {timeSlot.map((no) => <option key={no} value={no}>{no}</option>)}
                   </select>
                 </div>
@@ -169,50 +173,51 @@ const Form = () => {
               </div>
 
               <div className='formSection'>
-                {/* Dropdown for selecting Faculty or Student */}
+                {/* User Type Dropdown */}
                 <div className="formFieldContainer">
-                  <label htmlFor="selectedUser">Select User:</label>
+                  <label htmlFor="userType">Select User Type:</label>
                   <br />
-                  <select name="selectedUser" value={formData.selectedUser} onChange={handleChange}>
+                  <select name="userType" value={formData.userType} onChange={handleChange}>
                     <option value="Student">Student</option>
-                    {facultyList.map(faculty => (
-                      <option key={faculty.id} value={faculty.id}>
-                        {faculty.name}
-                      </option>
-                    ))}
+                    <option value="Faculty">Faculty</option>
                   </select>
                 </div>
 
-                {/* If Faculty is selected, show Faculty ID/Name fields */}
-                <div className="formFieldContainer">
-                  <label htmlFor="personID">
-                    {formData.selectedUser === 'Student' ? 'Student ID* :' : 'Faculty ID:'}
-                  </label>
-                  <br />
-                  <input 
-                    type="text" 
-                    name="personID" 
-                    id="personID" 
-                    value={formData.personID} 
-                    onChange={handleChange} 
-                    readOnly={formData.selectedUser !== 'Student'}
-                  />
-                </div>
+                {/* Faculty dropdown when "Faculty" is selected */}
+                {formData.userType === 'Faculty' && (
+                  <div className="formFieldContainer">
+                    <label htmlFor="facultySelect">Select Faculty:</label>
+                    <br />
+                    <select
+                      name="facultySelect"
+                      onChange={(e) => handleFacultySelect(e.target.value)}
+                    >
+                      <option value="">Select Faculty</option>
+                      {facultyList.map(faculty => (
+                        <option key={faculty.id} value={faculty.id}>
+                          {faculty.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
 
-                <div className="formFieldContainer">
-                  <label htmlFor="personName">
-                    {formData.selectedUser === 'Student' ? 'Student Name* :' : 'Faculty Name:'}
-                  </label>
-                  <br />
-                  <input 
-                    type="text" 
-                    name="personName" 
-                    id="personName" 
-                    value={formData.personName} 
-                    onChange={handleChange} 
-                    readOnly={formData.selectedUser !== 'Student'}
-                  />
-                </div>
+                {/* If "Student" is selected, allow user to input their own ID and Name */}
+                {formData.userType === 'Student' && (
+                  <>
+                    <div className="formFieldContainer">
+                      <label htmlFor="personID">Student ID* :</label>
+                      <br />
+                      <input type="text" name="personID" id="personID" value={formData.personID} onChange={handleChange} />
+                    </div>
+
+                    <div className="formFieldContainer">
+                      <label htmlFor="personName">Student Name* :</label>
+                      <br />
+                      <input type="text" name="personName" id="personName" value={formData.personName} onChange={handleChange} />
+                    </div>
+                  </>
+                )}
 
                 <div className="formFieldContainer">
                   <label htmlFor="problemName">Select Problem:</label>
