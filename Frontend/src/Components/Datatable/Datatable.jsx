@@ -235,7 +235,7 @@ const Datatable = ({ data }) => {
     return (
         <div className='dataTableContainer'>
             <div className='titleRow'>
-                <div className='headertext'>All The Entries</div>
+                <div className='headertext'>Better Spaces Start Here</div>
                 <div className='searchDiv'>
 
                     <input
