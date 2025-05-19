@@ -34,7 +34,7 @@
 }
 
 .dashboardTableContainer{
-    width: 95% !important;
+    width: 100% !important;
     height: 95% !important;
     max-width: 1500px;
     padding: 2rem;
@@ -50,6 +50,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 .dashboardTableContainer:hover {
     box-shadow: 
@@ -135,10 +136,11 @@
     }
     .dashboardTableContainer {
         padding: 1rem;
-        height: 95% !important;
+        height: 92% !important;
+        margin-bottom: 60px;
     }
     .logo-header {
-        padding: 0.75rem 1rem;
+        /* padding: 0.75rem 1rem; */
         margin-bottom: 1.5rem;
     }
     .logo {
@@ -160,7 +162,8 @@
 
 @media (max-width: 480px) {
     .logo-header {
-        padding: 0.5rem;
+        display: flex !important;
+        justify-content: space-between !important;
         margin-bottom: 1rem;
     }
     .logo {
@@ -176,7 +179,6 @@
     background: white;
     border-radius: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    margin-top: 1rem;
     padding: 0 1rem;
 }
 
@@ -339,7 +341,6 @@ tr:hover {
     border-radius: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    margin-top: 1rem;
 }
 
 /* Animation for Table Data */
@@ -492,6 +493,26 @@ td {
     gap: 1rem;
 }
 
+
+
+
+.logo-header {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+    height: fit-content;
+    height: 50px;
+    width: 100%;
+    padding: 0 !important;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
 /* Responsive Header Actions */
 @media (max-width: 768px) {
     .header-actions {
@@ -515,31 +536,23 @@ td {
     .refresh-button {
         width: 100%;
     }
-}
+    .logo-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-/* Logo Header */
+    
+    .logo-left {
+        height: 70%;
+    }
+    .logo-right {
+        height: 80%;
+    }
+    
+}
 .logo-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    margin-bottom: 2rem;
-    position: relative;
-    border-radius: 12px;
-}
-
-.logo {
-    height: 60px;
-    width: auto;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-
-.logo-left {
-    margin-right: auto;
-}
-
-.logo-right {
-    margin-left: auto;
+    justify-content: center !important;
+    align-items: flex-end !important;
 }

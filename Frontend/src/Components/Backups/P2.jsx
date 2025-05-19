@@ -97,7 +97,7 @@ const Form = () => {
     const today = new Date().toISOString().split('T')[0];
 
     if (!formData.labno) {
-      toast.error('Lab No. is required');
+      toast.error('Location is required');
       return false;
     }
     if (!formData.date) {
@@ -135,7 +135,7 @@ const Form = () => {
             <div className='formItSelf'>
               <div className='formSection'>
                 <div className="formFieldContainer">
-                  <label htmlFor="labno">Lab No.* :</label>
+                  <label htmlFor="labno">Location* :</label>
                   <br />
                   <select name="labno" value={formData.labno} onChange={handleChange}>
                     {labNo.map((no) => <option key={no} value={no}>{no}</option>)}

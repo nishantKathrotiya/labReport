@@ -100,7 +100,11 @@ const Form = () => {
       }
     } else if (currentStep === 2) {
       if (!formData.labno) {
-        toast.error('Lab No. is required');
+        toast.error('Location is required');
+        return false;
+      }
+      if (!labNo.includes(parseInt(formData.labno))) {
+        toast.error('Location number. Please enter a valid location');
         return false;
       }
       if (!formData.date) {
@@ -259,11 +263,22 @@ const Form = () => {
       <div className="step2-columns">
         <div className="step2-column">
           <div className="formFieldContainer">
-            <label htmlFor="labno">Lab No.* :</label>
+            <label htmlFor="labno">Location* :</label>
             <br />
-            <select name="labno" value={formData.labno} onChange={handleChange}>
-              {labNo.map((no) => <option key={no} value={no}>{no}</option>)}
-            </select>
+            <input
+              type="number"
+              name="labno"
+              value={formData.labno}
+              onChange={handleChange}
+              placeholder="Enter Location"
+              min="100"
+              max="999"
+            />
+            {formData.labno && !labNo.includes(parseInt(formData.labno)) && (
+              <div style={{ color: 'red', fontSize: '0.8em', marginTop: '5px' }}>
+                Invalid Location. Please enter a valid Location.
+              </div>
+            )}
           </div>
 
           <div className="formFieldContainer">
@@ -345,9 +360,9 @@ const Form = () => {
   return (
     <div className='formPage'>
       <div className='formContainer'>
-        <div className="logo-header">
-          <img src={universityLogo} alt="University Logo" className="logo logo-left" />
-          <img src={instituteLogo} alt="Institute Logo" className="logo logo-right" />
+        <div className="logo-header2">
+          <img src={universityLogo} alt="University Logo" className="logo2 logo-left" />
+          <img src={instituteLogo} alt="Institute Logo" className="logo2 logo-right" />
         </div>
         <h1 className='title'>Help Us Improve our Space!</h1>
         {loading ? (

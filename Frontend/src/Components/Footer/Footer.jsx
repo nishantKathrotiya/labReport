@@ -8,8 +8,10 @@ const Footer = () => {
             <a href="https://github.com/nishantkathrotiya" target="_blank" rel="noopener noreferrer">
                 Nishant Kathrotiya
             </a>
+           {" "}
+            Under the guidance of 
             {" "}
-            Under the guidance of Prof. Akash Patel & Prof. Minesh Patel
+            Prof. Akash Patel & Tech. Minesh Patel
         </footer>
     );
 }
