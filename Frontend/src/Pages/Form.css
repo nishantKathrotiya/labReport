@@ -469,6 +469,7 @@
     .formContainer {
         padding: 1.5rem;
         margin: 1rem 0;
+        margin-bottom: 120px !important;
     }
 
     .progress-steps,

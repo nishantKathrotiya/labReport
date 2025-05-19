@@ -1,13 +1,47 @@
 const formSchema  = require("../model/form");
 const {ApiError} = require("../utils/ApiError");
 const XLSX = require('xlsx');
-
+const mailSender = require("../Transporter/MailSender");
+const { getIssueEmailTemplate } = require("../utils/emailTemplate");
+const { getTechniciansByLabNumber } = require("../utils/labTechnicianMapping");
 const registerForm = async (req, res) => {
   try {
     const {formData} = req.body;
 
     if(formData.problemName == "Everything Fine"){
       formData.problem = null;
+    } else {
+      // Send email to lab technician if there's an issue
+
+      const issueDetails = {
+        labno:  formData.labno,
+        date: formData.date,
+        fromTime: formData.fromTime,
+        toTime: formData.toTime,
+        problemName: formData.problemName,
+        problem: formData.problem || 'No description provided',
+        personName: formData.personName,
+        personID: formData.personID
+    };
+      
+      const emailBody = getIssueEmailTemplate(issueDetails);
+      await mailSender(
+        "mojonly813@gmail.com", // Lab technician email
+        "Lab Report Issue Alert",
+        emailBody
+      );
+
+      const { technicians } = getTechniciansByLabNumber(issueDetails.labno);
+      if (!technicians.length) {
+        console.error("No technician found for this lab number.");
+        return;
+      }
+      await mailSender(
+        technicians.map(t => t.email).join(','),
+        `🚨 Lab Report Issue Alert - Lab ${issueDetails.labno}`,
+        emailBody
+    );
+
     }
     
     await formSchema.create({
@@ -31,9 +65,9 @@ const registerForm = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      ...e,
-      message: e.message
-  });
+      ...error,
+      message: error.message
+    });
   }
 };
 
