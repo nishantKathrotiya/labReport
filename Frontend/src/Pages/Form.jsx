@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { labNo, problemList, purposeOfuse, timeSlot, facultyList } from "../Utils/Data";
 import { toast } from 'react-toastify';
 import { regitserForm } from '../services/operation/form';
 import "./Form.css";
 import Purpose from '../Components/Purpose/Purpose';
-import { FaArrowRight, FaArrowLeft, FaCheck, FaHeart } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft, FaCheck } from 'react-icons/fa';
 import universityLogo from '../assets/university.png';
 import instituteLogo from '../assets/institute.png';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -18,7 +18,7 @@ const Form = () => {
     personID: '',
     personName: '',
     labno: 104,
-    date: '',
+    date: new Date().toISOString().split('T')[0], // Default to today
     fromTime: '9:10',
     toTime: '11:10',
     numberOfStudent: 1,
@@ -141,12 +141,12 @@ const Form = () => {
     if (!validate()) {
       return;
     }
-    
+
     setLoading(true);
     try {
       await regitserForm(formData, setFormData, setLoading);
       setShowSuccess(true);
-      
+
       // Reset form after 3 seconds
       setTimeout(() => {
         setShowSuccess(false);
@@ -274,17 +274,17 @@ const Form = () => {
               min="100"
               max="999"
             />
-            {formData.labno && !labNo.includes(parseInt(formData.labno)) && (
-              <div style={{ color: 'red', fontSize: '0.8em', marginTop: '5px' }}>
-                Invalid Location. Please enter a valid Location.
-              </div>
-            )}
+
+            <div style={{ color: 'red', fontSize: '0.8em', marginTop: '5px', height: "1px" }}>
+              {formData.labno && !labNo.includes(parseInt(formData.labno)) && ("Invalid Location. Please enter a valid Location.")}
+            </div>
+
           </div>
 
           <div className="formFieldContainer">
             <label htmlFor="date">Date* :</label>
             <br />
-            <input type="date" name="date" id="date" value={formData.date} onChange={handleChange} />
+            <input type="date" name="date" id="date" value={formData.date} disabled />
           </div>
 
           <div className="formFieldContainer">
@@ -297,11 +297,15 @@ const Form = () => {
         </div>
 
         <div className="step2-column">
-          <div className="formFieldContainer">
-            <label htmlFor="numberOfStudent">No. of Student :*</label>
-            <br />
-            <input type="number" min="1" max="25" name="numberOfStudent" id="numberOfStudent" value={formData.numberOfStudent} onChange={handleChange} />
-          </div>
+          {
+            formData.role !== "Student" && (
+              <div className="formFieldContainer">
+                <label htmlFor="numberOfStudent">No. of Student :*</label>
+                <br />
+                <input type="number" min="1" max="25" name="numberOfStudent" id="numberOfStudent" value={formData.numberOfStudent} onChange={handleChange} />
+              </div>
+            )
+          }
 
           <div className="formFieldContainer">
             <label htmlFor="purpose">Select Purpose:</label>
@@ -328,20 +332,23 @@ const Form = () => {
         </select>
       </div>
 
-      {formData.problemName !== 'Everything Fine' && (
-        <div className="formFieldContainerTextArea">
-          <label htmlFor="problem">Problem Description (Required)* :</label>
-          <br />
-          <textarea
-            id="problem"
-            name="problem"
-            value={formData.problem}
-            onChange={handleChange}
-            placeholder="Please describe the problem in detail"
-          />
-        </div>
-      )}
-    </div>
+      <div className="formFieldContainerTextArea" style={{ height: "100px" }}>
+        {formData.problemName !== 'Everything Fine' && (
+          <>
+            <label htmlFor="problem">Problem Description (Required)* :</label>
+            <br />
+            <textarea
+              id="problem"
+              name="problem"
+              value={formData.problem}
+              style={{ marginTop: '5px' }}
+              onChange={handleChange}
+              placeholder="Please describe the problem in detail"
+            />
+          </>
+        )}
+      </div>
+    </div >
   );
 
   const renderStep = () => {

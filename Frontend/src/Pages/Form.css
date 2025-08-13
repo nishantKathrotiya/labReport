@@ -67,7 +67,7 @@
 
 /* Progress Bar */
 .progress-container {
-    width: 100%;
+    width: 60%;
     margin-bottom: 1.5rem;
     padding: 0;
     position: relative;
@@ -345,14 +345,27 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
 }
 
 /* Error Message Styling */
@@ -490,7 +503,7 @@
     .subBtnContainer {
         justify-content: center;
     }
-    
+
     .subBtnContainer button {
         padding: 0.75rem 1.5rem;
     }
@@ -529,10 +542,21 @@
         margin: 0.5rem 0;
     }
 
+    .progress-container {
+        width: 80%;
+        margin-bottom: 3rem;
+    }
+
     .progress-steps,
     .formItSelf,
     .subBtnContainer {
         max-width: 100%;
+    }
+
+    .formItSelf{
+        width: 90%;
+        padding: 0;
+        margin: 0;
     }
 
     .formSection {
@@ -567,7 +591,7 @@
     }
 }
 
-#testFileContainer{
+#testFileContainer {
     width: 95% !important;
 }
 
@@ -577,7 +601,7 @@
         height: auto;
     }
 
-    .formContainer {  
+    .formContainer {
         width: 80% !important;
         margin-top: 30px;
         margin-bottom: 30px;
@@ -608,8 +632,10 @@
     }
 
     textarea {
-        width: 95% !important;;
+        width: 95% !important;
+        ;
     }
+
     input[type="text"] {
         width: 95%;
     }
@@ -620,35 +646,46 @@
         width: 100vw !important;
         height: 100% !important;
     }
-    
+
     .actualField {
         width: 250px;
     }
-    
+
 }
 
 /* Medium Devices (tablets, 768px and down) */
 @media only screen and (max-width: 768px) {
     .formPage {
-       width: 100vw;
+        width: 100vw;
     }
+
     .formContainer {
         width: 95vw !important;
         height: auto;
     }
+
     .formSection {
         width: 99% !important;
     }
-    .formFieldContainerTextArea, .formFieldContainer {
+
+    .formFieldContainerTextArea,
+    .formFieldContainer {
         width: 89%;
     }
-    
+
 }
 
 /* Animation Classes */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .formSection {
@@ -657,18 +694,20 @@
 
 /* Logo Header */
 .logo-header2 {
-   width: 100% !important;
-   height: 50px;
-   overflow: hidden;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   padding: 2px 10px !important;
+    width: 100% !important;
+    height: 50px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 10px !important;
 }
-.logo2{
+
+.logo2 {
     height: 100%;
     width: auto;
 }
+
 .formItSelf {
     transition: all 0.3s ease;
 }
@@ -730,9 +769,11 @@
         transform: scale(0);
         opacity: 0;
     }
+
     50% {
         transform: scale(1.2);
     }
+
     100% {
         transform: scale(1);
         opacity: 1;
@@ -744,6 +785,7 @@
         opacity: 0;
         transform: rotate(-45deg) translate(2px, -2px) scale(0);
     }
+
     100% {
         opacity: 1;
         transform: rotate(-45deg) translate(2px, -2px) scale(1);
@@ -755,6 +797,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -808,10 +851,21 @@
     transform: translateY(20px);
 }
 
-.formFieldContainer:nth-child(1) { animation-delay: 0.1s; }
-.formFieldContainer:nth-child(2) { animation-delay: 0.2s; }
-.formFieldContainer:nth-child(3) { animation-delay: 0.3s; }
-.formFieldContainer:nth-child(4) { animation-delay: 0.4s; }
+.formFieldContainer:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.formFieldContainer:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.formFieldContainer:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.formFieldContainer:nth-child(4) {
+    animation-delay: 0.4s;
+}
 
 /* Progress Bar Animations */
 .progress-step {
@@ -866,9 +920,9 @@
     display: inline-block;
 }
 
-.formFieldContainer input:focus + label,
-.formFieldContainer select:focus + label,
-.formFieldContainerTextArea textarea:focus + label {
+.formFieldContainer input:focus+label,
+.formFieldContainer select:focus+label,
+.formFieldContainerTextArea textarea:focus+label {
     transform: translateY(-2px);
     color: #4299e1;
 }
@@ -879,6 +933,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -889,6 +944,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -917,7 +973,7 @@
     transition: all 0.5s ease;
 }
 
-.progress-step.completed + .progress-step::before {
+.progress-step.completed+.progress-step::before {
     background: linear-gradient(90deg, #4299e1 0%, #667eea 100%);
 }
 
@@ -948,7 +1004,7 @@
     z-index: 100;
 }
 
-.developer-footer a {
+.developer-footer span {
     color: #4299e1;
     text-decoration: none;
     font-weight: 500;
@@ -956,7 +1012,7 @@
     position: relative;
 }
 
-.developer-footer a::after {
+.developer-footer span::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -967,11 +1023,11 @@
     transition: width 0.3s ease;
 }
 
-.developer-footer a:hover {
+.developer-footer span:hover {
     color: #3182ce;
 }
 
-.developer-footer a:hover::after {
+.developer-footer span:hover::after {
     width: 100%;
 }
 
@@ -983,8 +1039,15 @@
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
-  

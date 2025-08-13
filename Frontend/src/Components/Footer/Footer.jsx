@@ -1,17 +1,23 @@
-import React from 'react';
-import { FaRegFileArchive } from "react-icons/fa";
-
 const Footer = () => {
     return (
         <footer className="developer-footer">
             Designed and developed by {" "}
-            <a href="https://github.com/nishantkathrotiya" target="_blank" rel="noopener noreferrer">
-                Nishant Kathrotiya
-            </a>
-           {" "}
-            Under the guidance of 
+            <span>
+                Nishant Kathrotiya (22DIT022)
+            </span>
             {" "}
-            Prof. Akash Patel & Tech. Minesh Patel
+            Under the guidance of
+            {" "}
+            <span>
+                Prof. Mr. Akash Patel
+            </span>
+            {" "}
+            &
+            {" "}
+            <span>
+                Technician. Mr. Minesh Patel
+            </span>
+
         </footer>
     );
 }
