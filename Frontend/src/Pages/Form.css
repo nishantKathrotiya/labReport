@@ -192,6 +192,27 @@
     display: none;
 }
 
+.radio-group {
+    display: flex !important;
+    gap: 20px;
+    /* space between options */
+}
+
+.radio-holder {
+    font-size: 1.2rem !important;
+    display: inline-flex !important;
+    /* keeps radio and label text on same line */
+    align-items: center !important;
+    /* vertically center text with radio */
+    gap: 6px;
+    /* space between circle and text */
+    cursor: pointer;
+    /* makes label clickable */
+}
+
+
+
+
 /* Form Fields */
 .formFieldContainer {
     margin-bottom: 0.75rem;
@@ -553,7 +574,7 @@
         max-width: 100%;
     }
 
-    .formItSelf{
+    .formItSelf {
         width: 90%;
         padding: 0;
         margin: 0;

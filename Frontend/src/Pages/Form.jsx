@@ -203,7 +203,7 @@ const Form = () => {
   const renderStep1 = () => (
     <div className='formSection'>
 
-      <div className="formFieldContainer">
+      {/* <div className="formFieldContainer">
         <label htmlFor="role">Select Role:</label>
         <br />
         <select name="role" value={formData.role} onChange={handleChange}>
@@ -211,7 +211,47 @@ const Form = () => {
           <option value="Faculty">Faculty</option>
           <option value="Other">Other</option>
         </select>
+      </div> */}
+
+
+      <div className="formFieldContainer">
+        <label style={{fontSize:"1.2rem"}}>Select Role:</label>
+        <div className="radio-group">
+
+          <label className="radio-holder">
+            <input
+              type="radio"
+              name="role"
+              value="Faculty"
+              checked={formData.role === "Faculty"}
+              onChange={handleChange}
+            />
+            <span>Faculty</span>
+          </label>
+          <label className="radio-holder">
+            <input
+              type="radio"
+              name="role"
+              value="Student"
+              checked={formData.role === "Student"}
+              onChange={handleChange}
+            />
+            <span>Student</span>
+          </label>
+          <label className="radio-holder">
+            <input
+              type="radio"
+              name="role"
+              value="Other"
+              checked={formData.role === "Other"}
+              onChange={handleChange}
+            />
+            <span>Other</span>
+          </label>
+        </div>
       </div>
+
+
 
       {formData.role === "Other" && (
         <div className="formFieldContainer">
