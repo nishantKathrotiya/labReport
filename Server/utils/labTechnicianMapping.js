@@ -9,11 +9,11 @@ const technicianMapping = {
         { name: 'Minesh Patel', email: 'mineshpatel.dit@charusat.ac.in' },
     ],
     second: [
-        { name: 'test2', email: 'vivekpate.ce@charusat.ac.in' },
-        { name: 'test3', email: 'kalpeshpatel.ce@charusat.ac.in' }
+        { name: 'Vivek Patel', email: 'vivekpatel.ce@charusat.ac.in' },
+        { name: 'Kalpeh Patel', email: 'kalpeshpatel.ec@charusat.ac.in' }
     ],
     third: [
-        { name: 'test4', email: 'kaushikpatel.ee@charusat.ac.in' }
+        { name: 'Kaushik Patel', email: 'kaushikpatel.ee@charusat.ac.in' }
     ]
 };
 
